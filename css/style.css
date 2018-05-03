@@ -96,12 +96,16 @@ div#tema_options>div:nth-child(2) {
   height:90px;
 }
 
+.scroll_header {
+  height:120px;
+}
+
 .filtroUp {
-  margin-top:75px;
+  margin-top:65px;
 }
 
 #quitarFiltro{
-  top:166px;
+  top:156px;
 }
 
 #dropDown {

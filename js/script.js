@@ -1,6 +1,6 @@
 ﻿	var ambiente = 'producción';
 	var HOSTNAME = ambiente == 'producción' ? '' : 'http://172.16.24.57';
-//var HOSTNAME = 'https://portal.cnih.cnh.gob.mx/api';
+var HOSTNAME = 'https://portal.cnih.cnh.gob.mx/api';
 	var asyncAJAX = false;
 	var data_BUSCAR;
 	var cambio_ = false;
