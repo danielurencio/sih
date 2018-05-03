@@ -3,7 +3,9 @@ window.onscroll = function() {
   var tr = document.querySelectorAll("tbody.hide>tr:first-child");
 
   var els = [];
-  var offset = 132-38+20;
+  var offset_ref = document.querySelector('.scroll_header').getBoundingClientRect();
+  var offset = offset_ref.top + offset_ref.height - 30;
+  //offset = 132-38+20;
 
   for(var i in tr) {
     if(tr[i].nodeName == "TR") {
@@ -48,6 +50,7 @@ window.onscroll = function() {
       overflows_ = !Array.prototype.slice.call(overflows_).filter(function(d) {
 	return d.style.display != "none";
       })[0].offsetHeight;
+
 
       if(!overflows_) {
         $("tr.scroll_aid_header").attr("visible","yes");
