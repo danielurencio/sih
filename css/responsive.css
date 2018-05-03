@@ -1,4 +1,5 @@
 @media screen and (max-width:640px) {
+
 	div#footer {
 	    visibility:hidden;
 	}
@@ -363,3 +364,5 @@
 		font-size:10px;
 	}
 }
+
+

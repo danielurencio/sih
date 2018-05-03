@@ -919,7 +919,7 @@ function grapher(info) {
                 fontFamily: 'Open Sans'
             },
             inverted: false,
-            marginBottom: marginCred
+            marginBottom: window.innerHeight > 640 ? marginCred : 40
         },
         tooltip: {
             useHTML: true,
@@ -943,6 +943,8 @@ function grapher(info) {
             }
         },
         credits: {
+            enabled: window.innerHeight > 640 ? true : false,
+            
             text: NOTAS,
             position: {
                 align: "left",
@@ -955,6 +957,7 @@ function grapher(info) {
                 color: "black"
             },
             href: null
+            
         },
         title: {
             text: info.subtema ? info.subtema : info.tema
