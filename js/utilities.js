@@ -884,7 +884,7 @@ function grapher(info) {
 
     // Los símbolos matemáticos no aparecen en IE (fix adicional).
     if(navigator.userAgent.match(/.NET/)) {
-	NOTAS = NOTAS.replace(/&leq;/g,"<=")
+	  NOTAS = NOTAS.replace(/&leq;/g,"<=")
     }
 
 
@@ -919,7 +919,7 @@ function grapher(info) {
                 fontFamily: 'Open Sans'
             },
             inverted: false,
-            marginBottom: window.innerHeight > 640 ? marginCred : 40
+            marginBottom: window.innerWidth > 640 ? marginCred : 40
         },
         tooltip: {
             useHTML: true,
@@ -943,7 +943,7 @@ function grapher(info) {
             }
         },
         credits: {
-            enabled: window.innerHeight > 640 ? true : false,
+            enabled: window.innerWidth > 640 ? true : false,
             
             text: NOTAS,
             position: {
