@@ -140,6 +140,14 @@
 
 			   // Agrega el nombre de la selección en el filtro y lo inhabilita.
                             $("div#quitarFiltro").css("display", "block");
+                              var quitarFiltro = document.querySelector('div#quitarFiltro');
+                              var quitarFiltroP = quitarFiltro.getBoundingClientRect().x;
+                              var filtroBuscador = document.querySelector('input#filtroSerie').getBoundingClientRect();
+                              var filtroBuscadorP = filtroBuscador.x + filtroBuscador.width;
+
+                              $(quitarFiltro).css("left",filtroBuscadorP + 8 + "px");
+
+
 			    $("input#filtroSerie").prop("disabled",true);
 			    document.querySelector("input#filtroSerie").value = "    " + txt.join(" > ");
                         });

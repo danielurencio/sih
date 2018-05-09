@@ -46,7 +46,103 @@ function resizeHighchart(exp_size, activ) {
     chart.setSize(+new_width, +new_height)
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+function footNoteDisplay() {
+    var bool = $('.highcharts-credits').css('visibility') == 'hidden';
+    if(!bool) {
+        if(document.querySelector('#notesHelp')) {
+            d3.select('#notesHelp').remove();
+        }
+    } else {
 
+        var root_ = d3.select('div#chart');
+
+        if(!document.querySelector('#notesHelp')) {
+
+            var botonNotas = root_
+              .append('button')
+                .style('height','20px')
+                .style('position','absolute')
+                .attr('id','notesHelp')
+                .style('left','15px')
+                .style('top','calc(100% - 30px)')
+                .style('class','off')
+                .html("Notas >");
+
+            botonNotas.on('click',function(){
+                var isON = $('#notesHelp').attr('class') == 'on' ? true : false;
+
+                if(isON) {
+                    d3.selectAll('#notasTemporal').remove();
+                    $(this).html('Notas >');
+                    $(this).attr('class','off')
+                } else {
+
+                    root_.append('div')
+                        .attr('id','notasTemporal')
+                        .style('position','absolute')
+                        .style('top','50%')
+                        .style('left','30px')
+                        .style('border-radius','3px')
+                        .style('background-color','rgba(13,180,190,0.7)')
+                        .style('color','white')
+                        .style('padding','15px')
+                        .html($('#metodos').html());
+
+                    var notasTempHeight = +$('#notasTemporal').css('height').split('px')[0];
+                    $('#notasTemporal').css('top','calc(100% - ' + (notasTempHeight + 65) + 'px)');
+                    $(this).html('Notas <');
+                    $(this).attr('class','on');
+                }
+            });
+
+            botonNotas.on('mouseout',function() {
+                //d3.selectAll('#notasTemporal').remove();
+            })
+
+        }
+    }
+
+}
+
+
+function showHideGraphFootnotes() {
+
+    $('div#chart').on("redraw",function() { console.log('draw'); })
+  //window.setInterval(function() {
+    if(document.querySelector('.highcharts-credits')) {
+      var credits_ = document.querySelector('.highcharts-credits').getBoundingClientRect();
+      var chart_ = document.querySelector('div#chart').getBoundingClientRect();
+      var x_labels = document.querySelector('.highcharts-xaxis-labels').getBoundingClientRect();
+
+      var credits_P = credits_.x + credits_.width;
+      var chart_P = chart_.x + chart_.width;
+
+      var cond_x = credits_P > chart_P ? true : false;
+      var cond_y = x_labels.y > credits_.y ? true : false;
+
+      var selChart = $('div#chart').highcharts();
+
+      if(cond_x) {
+          selChart.options.chart.marginBottom = 40;
+          selChart.isDirtyBox = true;
+          selChart.redraw();
+          $('.highcharts-credits').css('visibility','hidden');
+          //footNoteDisplay(true);
+      } else {
+          var marginCred = document.querySelector('div#metodos>div').clientHeight;
+          selChart.options.chart.marginBottom = marginCred;
+          selChart.isDirtyBox = true;
+          selChart.redraw();
+          $('.highcharts-credits').css('visibility','visible');
+          //footNoteDisplay(false);
+      }
+
+      footNoteDisplay();
+    }
+}
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -89,6 +185,23 @@ window.onresize = function() {
     }
 /*-------Mostrar y ocultar el scroller-x bajo demanda---------------------*/
   resizeMapaDeSeries();
+
+
+/* ---- Hacer que el botón de 'Remover filtro' siempre esté a cierta distianca del filtro buscador --- */
+  var quitarFiltro = document.querySelector('div#quitarFiltro');
+  var filtroBuscador = document.querySelector('input#filtroSerie').getBoundingClientRect();
+
+  var quitarFiltroP = quitarFiltro.getBoundingClientRect().x;
+  var filtroBuscadorP = filtroBuscador.x + filtroBuscador.width;
+
+  $(quitarFiltro).css("left",filtroBuscadorP + 8 + "px");
+/* ---- Hacer que el botón de 'Remover filtro' siempre esté a cierta distianca del filtro buscador --- */
+
+
+/* ---- Hacer algo con las notas al pie de página de la gráfica cuando éstas no quepan ---- */
+  showHideGraphFootnotes()
+/* ---- Hacer algo con las notas al pie de página de la gráfica cuando éstas no quepan ---- */
+
 }
 
 
@@ -419,12 +532,13 @@ function obtener_series() {
                     var prevRow = $("div.overflow").filter(function() {
                             return $(this).css("display") == "block";
                         })[0]
-			.querySelectorAll("tr:nth-child(" + _ix_ + ")")[0]
-if(prevRow.getAttribute("id")) {
-  prevRow = 0;
-} else {
+			.querySelectorAll("tr:nth-child(" + _ix_ + ")")[0];
+
+            if(prevRow.getAttribute("id")) {
+                prevRow = 0;
+            } else {
                         prevRow = prevRow.querySelector("td.graph").innerHTML.length;
-}
+            }
 
                     prevRow = prevRow > 0 ? 0 : 1;
 //		   prevRow = 1;
@@ -466,7 +580,7 @@ if(prevRow.getAttribute("id")) {
 
                         if (dist || dist_) {
                             var tema = $(s)[0]
-				.querySelector("td:first-child").innerHTML;
+				                            .querySelector("td:first-child").innerHTML;
 
                             tema = tema.replace(/&[a-z;\s]*/g, "");
                             tema = tema.replace(/^\s/g, "");
@@ -807,7 +921,7 @@ function enableGraphs() {
 
         info.fechas = fechas_().split(",");
         grapher(info);
-
+        showHideGraphFootnotes();
     });
 };
 
@@ -919,7 +1033,7 @@ function grapher(info) {
                 fontFamily: 'Open Sans'
             },
             inverted: false,
-            marginBottom: window.innerWidth > 640 ? marginCred : 40
+            marginBottom: marginCred//window.innerWidth > 640 ? marginCred : 40
         },
         tooltip: {
             useHTML: true,
@@ -943,7 +1057,7 @@ function grapher(info) {
             }
         },
         credits: {
-            enabled: window.innerWidth > 640 ? true : false,
+            enabled: true,//window.innerWidth > 640 ? true : false,
             
             text: NOTAS,
             position: {
@@ -1117,7 +1231,7 @@ function grapher(info) {
             $(this).attr("tag", new_tag_boton);
 
         }
-
+        showHideGraphFootnotes();
     });
 
 };
@@ -2058,4 +2172,6 @@ function resizeMapaDeSeries() {
 
           }
     }
+
+
 }

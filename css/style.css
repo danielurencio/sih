@@ -106,10 +106,13 @@ div#tema_options>div:nth-child(2) {
 
 #quitarFiltro{
   top:156px;
+  left:71%;
 }
 
 #dropDown {
+  width:40%;
   top:185px;
+  left:30%;
 }
 
 .scroll_aid_header {
@@ -688,17 +691,6 @@ text.highcharts-credits>.highcharts-anchor {
   100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
 }
 
-.consulta_anim {
-  background-color: rgba(13,180,190,1);
-  border: 2px solid white;
-  border: none;
-/*  color: white;*/
-  border-radius: 3px;
- /* font-weight: 800;*/
-  animation:myfirst 0.8s infinite; /* IE */
-  -moz-animation:myfirst 0.8s infinite; /* Firefox */
-  -webkit-animation:myfirst 0.8s infinite; /* Safari and Chrome */
-}
 
 
 @-moz-keyframes myfirst {/* Firefox */
@@ -791,12 +783,15 @@ div#mainTitle{
   font-size:24px;
 }
 
+
 .consulta_anim {
+      font-size:14px;
+      min-width:90px;
       background-color: rgba(13,180,190,1);
       /*border: 2px solid white;*/
       /*border: none;*/
       border-radius: 3px;
-      font-weight: 600;
+      font-weight: 800;
       animation:myfirst 0.8s infinite; /* IE */
       -moz-animation:myfirst 0.8s infinite; /* Firefox */
       -webkit-animation:myfirst 0.8s infinite; /* Safari and Chrome */
@@ -805,6 +800,7 @@ div#mainTitle{
       position:relative;
       height:30px;
       top:27px;
+      font-family:'Open Sans';
 }
 
 div#titulo_mapaSeries {
@@ -845,4 +841,18 @@ li.mapaSeriesTemas {
 
 .liMapa {
   font-size:1.3vw;
+}
+
+#filtro_buscador_papa {
+  top:90px;
+}
+
+#filtro_buscador {
+  left:30%;
+  position:fixed;
+  width:100%;
+}
+
+#filtroSerie {
+  width:40%;
 }
