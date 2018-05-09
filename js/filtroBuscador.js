@@ -141,15 +141,16 @@
 			   // Agrega el nombre de la selección en el filtro y lo inhabilita.
                             $("div#quitarFiltro").css("display", "block");
                               var quitarFiltro = document.querySelector('div#quitarFiltro');
-                              var quitarFiltroP = quitarFiltro.getBoundingClientRect().x;
+                              var quitarFiltroP = quitarFiltro.getBoundingClientRect().x || quitarFiltro.getBoundingClientRect().left;
+                              
                               var filtroBuscador = document.querySelector('input#filtroSerie').getBoundingClientRect();
-                              var filtroBuscadorP = filtroBuscador.x + filtroBuscador.width;
+                              var filtroBuscadorP = (filtroBuscador.x || filtroBuscador.left) + filtroBuscador.width;
 
                               $(quitarFiltro).css("left",filtroBuscadorP + 8 + "px");
 
 
-			    $("input#filtroSerie").prop("disabled",true);
-			    document.querySelector("input#filtroSerie").value = "    " + txt.join(" > ");
+			                  $("input#filtroSerie").prop("disabled",true);
+			                  document.querySelector("input#filtroSerie").value = "    " + txt.join(" > ");
                         });
 
                 } else if (matches.length == 0) {
@@ -231,35 +232,37 @@
                 window.setTimeout(function() { /*------------------Async--*/
 
                     if (!siFiltro) {
+
                         var el_ = selected_TD(txt)[0]; // <-- (b)
-	var docTable = el_.parentNode.parentNode;
-	var specialType = docTable.querySelectorAll('td#dist_').length;
+	                    var docTable = el_.parentNode.parentNode;
+	                    var specialType = docTable.querySelectorAll('td#dist_').length;
 
                         if (el_) {
-			    if(specialType) {
-	
-			      filterSpecialType(docTable,el_);
-			      enableGraphs();
+			               if(specialType) {
 
-			    } else {
+			                 filterSpecialType(docTable,el_);
+			                 enableGraphs();
+
+			               } else {
                               mostrar(el_);
-			    }
+			               }
+
                         } else {
 
                             var sleep_ = setInterval(function() {
                                 el_ = selected_TD(txt)[0];
-	var docTable = el_.parentNode.parentNode;
-	var specialType = docTable.querySelectorAll('td#dist_').length;
+	                            var docTable = el_.parentNode.parentNode;
+	                            var specialType = docTable.querySelectorAll('td#dist_').length;
 
                                 if (el_) {
                                     clearInterval(sleep_);
-				    if(specialType) {
-				      filterSpecialType(docTable,el_);
-				      enableGraphs();
+				                    if(specialType) {
+				                        filterSpecialType(docTable,el_);
+				                        enableGraphs();
 
-				    } else {
-                                      mostrar(el_);
-				    }
+				                    } else {
+                                        mostrar(el_);
+				                    }
                                 }
                             }, 500);
                         }
@@ -276,17 +279,16 @@
 	    // Cuando la tabla ya está abierta, en vez de volver a pedir los servicios web,
 	    // se tiene que encontrar la fila de interés y deshacerse de las demás.
             var el_ = selected_TD(txt)[0];
-	    var docTable = el_.parentNode.parentNode;
-	    var specialType = docTable.querySelectorAll('td#dist_').length;
+	        var docTable = el_.parentNode.parentNode;
+	        var specialType = docTable.querySelectorAll('td#dist_').length;
 
-	    if(caso_especial  || specialType) {
-		filterSpecialType(docTable,el_);
-		enableGraphs();
+	        if(caso_especial  || specialType) {
+		      filterSpecialType(docTable,el_);
+		      enableGraphs();
 
-	    } else {
-
+	        } else {
               mostrar(el_);
-	    }
+	        }
 
         }
 //enableGraphs();
@@ -297,7 +299,10 @@
         SS_ = false;
         d3.selectAll("div.overflow tr").style("display", "none");
         $(document.querySelectorAll("div.overflow tr")[0]).css("display", "block");
+
         $(el.parentNode).css("display", "block");
+        $('.hide>tr').filter(function() { return  $(this).css('display') == 'block'; })
+            .css('display','table-row');
         var pos = el.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop;
 
         $(window).scrollTop(
