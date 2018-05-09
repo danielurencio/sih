@@ -97,21 +97,15 @@ function footNoteDisplay() {
                     $(this).attr('class','on');
                 }
             });
-
-            botonNotas.on('mouseout',function() {
-                //d3.selectAll('#notasTemporal').remove();
-            })
-
         }
     }
-
 }
 
 
 function showHideGraphFootnotes() {
 
     $('div#chart').on("redraw",function() { console.log('draw'); })
-  //window.setInterval(function() {
+
     if(document.querySelector('.highcharts-credits')) {
       var credits_ = document.querySelector('.highcharts-credits').getBoundingClientRect();
       var chart_ = document.querySelector('div#chart').getBoundingClientRect();
@@ -130,14 +124,13 @@ function showHideGraphFootnotes() {
           selChart.isDirtyBox = true;
           selChart.redraw();
           $('.highcharts-credits').css('visibility','hidden');
-          //footNoteDisplay(true);
       } else {
           var marginCred = document.querySelector('div#metodos>div').clientHeight;
           selChart.options.chart.marginBottom = marginCred;
           selChart.isDirtyBox = true;
           selChart.redraw();
           $('.highcharts-credits').css('visibility','visible');
-          //footNoteDisplay(false);
+          d3.selectAll('#notasTemporal').remove();
       }
 
       footNoteDisplay();
