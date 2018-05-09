@@ -117,11 +117,11 @@ function showHideGraphFootnotes() {
       var chart_ = document.querySelector('div#chart').getBoundingClientRect();
       var x_labels = document.querySelector('.highcharts-xaxis-labels').getBoundingClientRect();
 
-      var credits_P = credits_.x + credits_.width;
-      var chart_P = chart_.x + chart_.width;
+      var credits_P = (credits_.x || credits_.left) + credits_.width;
+      var chart_P = (chart_.x || chart_.left) + chart_.width;
 
       var cond_x = credits_P > chart_P ? true : false;
-      var cond_y = x_labels.y > credits_.y ? true : false;
+      var cond_y = (x_labels.y || x_labels.top) > (credits_.y || credits_.top) ? true : false;
 
       var selChart = $('div#chart').highcharts();
 
