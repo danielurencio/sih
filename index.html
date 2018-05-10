@@ -98,36 +98,40 @@
 
     <div id='tema_options' style='text-align:center;height:100%;display:table-row;table-layout:fixed;'>
 
-
-     <div class='cell mapa_series'>
-      <div style='display:table;width:100%;height:100%;height:100%;'>
-       <div style='width:100%;height:100%;'>
-        <div class='titulo_cont mapaSeries_titulo' style='font-size:12px;'><span style='width:100%;' id='InfoTitle'>Mapa de series<br>y descargas</span><br><span id='info_circle' style='width:100%;font-size:1.5vw;color:rgb(13,180,190);'>&#9432;</span></div>
-       </div>
-      </div>
-     </div>
-
-     <div style='width:70%;display:table-cell;height:100%;'>
-      <div style='width:95%;display:table;table-layout:fixed;'>
-           <div class='cell seccion'>
-<!--            <div class='seccion_wraper'> -->
-             <div style='width:100%;display:table;table-layout:fixed;'>
-              <div class='titulo_cont'>Sección</div>
-              <select class="filtros_" style='width:100%;'></select>
+      <!--<div style='display:table;table-layout:fixed;'> -->
+           <div class='cell mapa_series'>
+            <div style='display:table;width:100%;height:100%;height:100%;' id='mapa_series'>
+             <div style='width:50%;height:100%;display:table-cell;'>
+              <div class='titulo_cont mapaSeries_titulo' style='font-size:12px;'><span style='width:100%;' id='InfoTitle'>Mapa de series<br>y descargas</span><br><span id='info_circle' style='width:100%;font-size:1.5vw;color:rgb(13,180,190);'>&#9432;</span></div>
              </div>
-<!--            </div>-->
-           </div>
-
-           <div class='cell tema'>
-            <!--<div class='seccion_wrapper'>-->
-             <div style='width:100%;display:table;table-layout:fixed;'>
-              <div class='titulo_cont'>Tema</div>
-              <select class="filtros" style='width:100%;'></select>
+             <div style='width:50%;height:100%;display:table-cell;' id='descargaTodo'>
+               <button style='font-size:11px;position:relative;top:25px;left:15px;height:30px;'>Descarga completa</button>
              </div>
-<!--            </div>-->
+            </div>
            </div>
-      </div>
-     </div>      
+      <!--</div> -->
+
+           <div style='width:70%;display:table-cell;height:100%;'>
+            <div style='width:100%;display:table;table-layout:fixed;' id='seccionYtema'>
+                 <div class='cell seccion'>
+      <!--            <div class='seccion_wraper'> -->
+                   <div style='width:100%;display:table;table-layout:fixed;'>
+                    <div class='titulo_cont'>Sección&nbsp;</div>
+                    <select class="filtros_" style='width:100%;'></select>
+                   </div>
+      <!--            </div>-->
+                 </div>
+
+                 <div class='cell tema'>
+                  <!--<div class='seccion_wrapper'>-->
+                   <div style='width:100%;display:table;table-layout:fixed;'>
+                    <div class='titulo_cont'>Tema&nbsp;</div>
+                    <select class="filtros" style='width:100%;'></select>
+                   </div>
+      <!--            </div>-->
+                 </div>
+            </div>
+           </div>      
 
      </div>
 

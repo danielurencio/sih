@@ -86,7 +86,7 @@ function footNoteDisplay() {
                         .style('top','50%')
                         .style('left','30px')
                         .style('border-radius','3px')
-                        .style('background-color','rgba(13,180,190,0.7)')
+                        .style('background-color','rgba(13,180,190,0.8)')
                         .style('color','white')
                         .style('padding','15px')
                         .html($('#metodos').html());
@@ -120,7 +120,7 @@ function showHideGraphFootnotes() {
       var selChart = $('div#chart').highcharts();
 
       if(cond_x) {
-          selChart.options.chart.marginBottom = 40;
+          selChart.options.chart.marginBottom = 60;
           selChart.isDirtyBox = true;
           selChart.redraw();
           $('.highcharts-credits').css('visibility','hidden');

@@ -47,7 +47,7 @@ div.mapa_series,div.seccion,div.tema,div.periodicidad,div.fecha {
 }
 
 div.mapa_series {
-  width:30%;
+  width:35%;
   height:100%;
 }
 
@@ -719,7 +719,7 @@ text.highcharts-credits>.highcharts-anchor {
   font-weight: 600;
 }
 
-button#consultar {
+button#consultar, div#descargaTodo>button {
   background-color: rgb(13,180,190);
   border: 0px solid white;
   color: white;
@@ -856,3 +856,38 @@ li.mapaSeriesTemas {
 #filtroSerie {
   width:40%;
 }
+
+
+/*--- PARA MOSTRAR 'SECCIÓN' Y 'TEMA' APILADOS VERTICALMENTE BORRAR ESTAS REGLAS ---*/
+
+  .seccion, .tema {
+    display:block !important;
+    width:100% !important;
+  }
+
+  .seccion>div, .tema>div {
+    display:table;
+  }
+
+  .seccion>div>*, .tema>div>* {
+    display:table-cell;
+  }
+
+  .seccion>div>.titulo_cont, .tema>div>.titulo_cont {
+    width:30%;
+    text-align:right;
+  }
+
+  .seccion>div>select, .tema>div>select {
+    width:70%;
+  }
+
+  div#seccionYtema {
+    position:relative;
+    top:20px;
+  }
+
+  div#tema_options>div:nth-child(2) {
+    padding-left:0px;
+  }
+  /*--- PARA MOSTRAR 'SECCIÓN' Y 'TEMA' APILADOS VERTICALMENTE BORRAR ESTAS REGLAS ---*/

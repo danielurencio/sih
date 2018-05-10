@@ -46,6 +46,10 @@
 		width:70%;
 	}
 
+  div#seccionYtema {
+    top:0px;
+  }
+
 	.consulta>div {
       left:calc(50% - 20px);
     }
@@ -400,6 +404,12 @@
   	/*font-size:10px;*/
   }
 
+}
+
+@media screen and (max-width:900px) {
+  #descargaTodo {
+    display:none !important;
+  }
 }
 /*
 @media screen and (max-width:750px) {
