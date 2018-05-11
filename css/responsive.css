@@ -198,6 +198,10 @@
     	height:100%;
     }
 
+    div#quitarFiltro {
+      left:300px;
+    }
+
 }
 
 
@@ -385,9 +389,9 @@
 
 
 
-@media screen and (max-width:824px) {
+@media screen and (min-width:535px) and (max-width:824px) {
   #filtro_buscador {
-  	left:100px;
+  	left:10%;
   	width:100%;
   }
 
@@ -400,8 +404,7 @@
   } 
 
   #filtroSerie {
-  	width:calc(40% - 115px);
-  	/*font-size:10px;*/
+  	width:calc(40% - 55px);
   }
 
 }
@@ -411,16 +414,17 @@
     display:none !important;
   }
 }
-/*
-@media screen and (max-width:750px) {
-  div#mainTitle {
-  	/*visibility:hidden;
-  }
 
-  #filtro_buscador_papa {
-  	top:73px;
-  }
 
+@media screen and (min-width:535px) and  (max-width:824px) {
+  #filtroSerie {
+    width:calc(40% - 55px);
+  }
 }
 
-*/
+
+@media screen and (min-width:535px) and  (max-width:750px) {
+  #filtroSerie {
+    width:calc(40% - 30px);
+  }
+}

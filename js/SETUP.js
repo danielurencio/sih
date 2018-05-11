@@ -1,5 +1,16 @@
 function SETUP() {
 
+  if(window.innerWidth < 824) {
+    $('div#quitarFiltro')
+                    .css('width','30px')
+                    .text('X')
+  } else {
+    $('div#quitarFiltro')
+            .css('width','100px')
+            .text('Remover filtro')
+  }
+  
+
   $("#datepicker_start").datepicker({inline:true, dateFormat:'yy-mm-dd'});
   $("#datepicker_end").datepicker({inline:true, dateFormat:'yy-mm-dd'});
 

@@ -3,11 +3,13 @@
  <head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script>
+    
     var width_ = window.innerWidth;
     if(width_ <= 1024) {
       var currentURL = new URL(window.location.href).searchParams.get('redirected');
       if(!currentURL) window.top.location.href = '/SIH?redirected=1';
     }
+    
   </script>
   <title>CNIH - Sistema de Información de Hidrocarburos (SIH)</title>
   <meta charset="UTF-8">
@@ -104,9 +106,12 @@
              <div style='width:50%;height:100%;display:table-cell;'>
               <div class='titulo_cont mapaSeries_titulo' style='font-size:12px;'><span style='width:100%;' id='InfoTitle'>Mapa de series<br>y descargas</span><br><span id='info_circle' style='width:100%;font-size:1.5vw;color:rgb(13,180,190);'>&#9432;</span></div>
              </div>
-             <div style='width:50%;height:100%;display:table-cell;' id='descargaTodo'>
-               <button style='font-size:11px;position:relative;top:25px;left:15px;height:30px;'>Descarga completa</button>
+
+             <div style='position:relative;left:10px;top:5px;width:50%;height:100%;display:table-cell;margin-left:20px;' id='descargaTodo'>
+              <div class='titulo_cont' style='font-size:12px;'><span style='width:100%;' id='InfoTitle'>Descargar<br>todo</span><br><img src='img/download.svg'></img></div>
              </div>
+
+
             </div>
            </div>
       <!--</div> -->

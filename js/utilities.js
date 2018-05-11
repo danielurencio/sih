@@ -80,19 +80,22 @@ function footNoteDisplay() {
                     $(this).attr('class','off')
                 } else {
 
-                    root_.append('div')
+                    d3.select('div#grapher').append('div')
                         .attr('id','notasTemporal')
-                        .style('position','absolute')
+                        .style('position','fixed')
                         .style('top','50%')
-                        .style('left','30px')
+                        .style('left','25%')
+                        .style('width','50%')
                         .style('border-radius','3px')
                         .style('background-color','rgba(13,180,190,0.8)')
                         .style('color','white')
                         .style('padding','15px')
                         .html($('#metodos').html());
 
-                    var notasTempHeight = +$('#notasTemporal').css('height').split('px')[0];
-                    $('#notasTemporal').css('top','calc(100% - ' + (notasTempHeight + 65) + 'px)');
+                    var notasBtnHeight = +$('#notesHelp')[0].getBoundingClientRect().y//.css("height").split('px')[0];
+                    var notasTemp = +$('#notasTemporal').css('height').split('px')[0] / 2//[0].getBoundingClientRect();
+                    //var notasY = notasTemp.height// || notasTemp.top;
+                    $('#notasTemporal').css('top','calc(50% - ' + (notasTemp) + 'px)');
                     $(this).html('Notas <');
                     $(this).attr('class','on');
                 }
@@ -104,7 +107,7 @@ function footNoteDisplay() {
 
 function showHideGraphFootnotes() {
 
-    $('div#chart').on("redraw",function() { console.log('draw'); })
+    $('div#grapher').on("redraw",function() { console.log('draw'); })
 
     if(document.querySelector('.highcharts-credits')) {
       var credits_ = document.querySelector('.highcharts-credits').getBoundingClientRect();
@@ -184,8 +187,8 @@ window.onresize = function() {
   var quitarFiltro = document.querySelector('div#quitarFiltro');
   var filtroBuscador = document.querySelector('input#filtroSerie').getBoundingClientRect();
 
-  var quitarFiltroP = quitarFiltro.getBoundingClientRect().x;
-  var filtroBuscadorP = filtroBuscador.x + filtroBuscador.width;
+  var quitarFiltroP = quitarFiltro.getBoundingClientRect().x || quitarFiltro.getBoundingClientRect().left;
+  var filtroBuscadorP = (filtroBuscador.x || filtroBuscador.left) + filtroBuscador.width;
 
   $(quitarFiltro).css("left",filtroBuscadorP + 8 + "px");
 /* ---- Hacer que el botón de 'Remover filtro' siempre esté a cierta distianca del filtro buscador --- */
@@ -194,6 +197,16 @@ window.onresize = function() {
 /* ---- Hacer algo con las notas al pie de página de la gráfica cuando éstas no quepan ---- */
   showHideGraphFootnotes()
 /* ---- Hacer algo con las notas al pie de página de la gráfica cuando éstas no quepan ---- */
+
+  if(window.innerWidth < 824) {
+    $('div#quitarFiltro')
+                    .css('width','30px')
+                    .text('X')
+  } else {
+    $('div#quitarFiltro')
+            .css('width','100px')
+            .text('Remover filtro')
+  }
 
 }
 
@@ -215,6 +228,8 @@ function descargarSerie() {
     titulo = titulo.replace(/Á/g, "A");
     titulo = titulo.replace(/É/g, "E");
     titulo = titulo.replace(/Í/g, "I");
+
+    
     titulo = titulo.replace(/Ó/g, "O");
     titulo = titulo.replace(/Ú/g, "U");
 
@@ -1715,6 +1730,12 @@ function periodForm(periodicidad) {
 ///////////////////////////////////////////////////////////////////////////////////////
 
 function mapaDeSeries(TEMAS) {
+
+ $("div#descargaTodo").hover(function(){
+    $(this).css("color", "rgb(120,255,255)");
+    }, function(){
+    $(this).css("color", "rgb(13,180,190)");
+  });
 
   $("span#info_circle").hover(function(){
     $(this).css("color", "rgb(120,255,255)");

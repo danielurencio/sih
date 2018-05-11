@@ -139,7 +139,12 @@
                             irAserie(txt);
 
 			   // Agrega el nombre de la selección en el filtro y lo inhabilita.
+
+
                             $("div#quitarFiltro").css("display", "block");
+                            $("div#quitarFiltro").css('visibility','hidden');
+
+                            window.setTimeout(function() {
                               var quitarFiltro = document.querySelector('div#quitarFiltro');
                               var quitarFiltroP = quitarFiltro.getBoundingClientRect().x || quitarFiltro.getBoundingClientRect().left;
                               
@@ -151,6 +156,9 @@
 
 			                  $("input#filtroSerie").prop("disabled",true);
 			                  document.querySelector("input#filtroSerie").value = "    " + txt.join(" > ");
+                              $('div#quitarFiltro').css('visibility','visible');
+                            },300);
+
                         });
 
                 } else if (matches.length == 0) {

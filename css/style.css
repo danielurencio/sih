@@ -891,3 +891,7 @@ li.mapaSeriesTemas {
     padding-left:0px;
   }
   /*--- PARA MOSTRAR 'SECCIÓN' Y 'TEMA' APILADOS VERTICALMENTE BORRAR ESTAS REGLAS ---*/
+
+div#descarcaTodo:hover {
+  cursor:pointer;
+}
