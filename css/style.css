@@ -892,6 +892,19 @@ li.mapaSeriesTemas {
   }
   /*--- PARA MOSTRAR 'SECCIÓN' Y 'TEMA' APILADOS VERTICALMENTE BORRAR ESTAS REGLAS ---*/
 
-div#descarcaTodo:hover {
+img#closeNotes:hover, div#descargaTodo:hover {
   cursor:pointer;
+  opacity:1;
+}
+
+img#closeNotes {
+  opacity:0.8;
+}
+
+.descargaTodo>span#InfoTitle {
+  color:rgb(13,180,190);
+}
+
+.descargaTodo>img{
+  opacity:0.6;
 }

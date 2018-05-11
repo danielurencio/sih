@@ -87,10 +87,24 @@ function footNoteDisplay() {
                         .style('left','25%')
                         .style('width','50%')
                         .style('border-radius','3px')
-                        .style('background-color','rgba(13,180,190,0.8)')
+                        .style('background-color','rgba(13,180,190,0.85)')
                         .style('color','white')
                         .style('padding','15px')
                         .html($('#metodos').html());
+
+                    d3.select('#notasTemporal').append('img')
+                        .attr('id','closeNotes')
+                        .attr('src','/img/close_.svg')
+                        .style('position','absolute')
+                        .style('top','-12.5px')
+                        .style('left','calc(100% - 12.5px)')
+
+                        $('img#closeNotes')
+                        .on('click',function() { 
+                            $('#notesHelp').html('Notas >');
+                            $('#notesHelp').attr('class','off');
+                            $('#notasTemporal').remove();
+                        });
 
                     var notasBtnHeight = +$('#notesHelp')[0].getBoundingClientRect().y//.css("height").split('px')[0];
                     var notasTemp = +$('#notasTemporal').css('height').split('px')[0] / 2//[0].getBoundingClientRect();
@@ -99,8 +113,45 @@ function footNoteDisplay() {
                     $(this).html('Notas <');
                     $(this).attr('class','on');
                 }
+
+                if(document.querySelector('div#notasTemporal')) {
+                        var notesFrameTop = document.querySelector('div#notasTemporal')
+                                         .getBoundingClientRect().top;
+
+                        if(notesFrameTop < 0) {
+                            $('#notasTemporal').css('width','60%')
+                                               .css('left','20%')
+                                               .css('top',notesFrameTop*1.5 + 'px');
+                        }
+                }
+
             });
         }
+    }
+
+    if(document.querySelector('div#notasTemporal')) {
+
+        var notesFrame = document.querySelector('div#notasTemporal')
+                                 .getBoundingClientRect();
+
+        var notesFrameBottom = notesFrame.bottom;
+        var notesFrameTop = notesFrame.top;
+
+        var notesBtnTop = document.querySelector('button#notesHelp')
+                                  .getBoundingClientRect()
+                                  .top;
+
+        var condToPullUp = notesFrameBottom > notesBtnTop;
+
+        if(condToPullUp) {
+            var dif_ = (notesFrameBottom - notesBtnTop) + 10;
+            $('div#notasTemporal').css('top',(notesFrameTop - dif_) + 'px');
+            $('#notasTemporal').css('top','calc(50% - ' + (notasTemp) + 'px)');
+        } else {
+            var notasTemp = +$('#notasTemporal').css('height').split('px')[0] / 2;
+            $('#notasTemporal').css('top','calc(50% - ' + (notasTemp) + 'px)');
+        }
+
     }
 }
 
@@ -198,16 +249,17 @@ window.onresize = function() {
   showHideGraphFootnotes()
 /* ---- Hacer algo con las notas al pie de página de la gráfica cuando éstas no quepan ---- */
 
+/* ---- Esto hace que el botón de remover filtro no se traslape con el filtro-buscador. ---- */
   if(window.innerWidth < 824) {
     $('div#quitarFiltro')
                     .css('width','30px')
-                    .text('X')
+                    .text('X');
   } else {
     $('div#quitarFiltro')
             .css('width','100px')
-            .text('Remover filtro')
+            .text('Remover filtro');
   }
-
+/* ---- Esto hace que el botón de remover filtro no se traslape con el filtro-buscador. ---- */
 }
 
 
@@ -1732,9 +1784,13 @@ function periodForm(periodicidad) {
 function mapaDeSeries(TEMAS) {
 
  $("div#descargaTodo").hover(function(){
-    $(this).css("color", "rgb(120,255,255)");
+    $('#descargaTodo>a>.titulo_cont>span').css("color", "rgb(0,225,225)");
+    $('#descargaTodo>a>.titulo_cont>img').css("opacity", "1");
+
     }, function(){
-    $(this).css("color", "rgb(13,180,190)");
+    $('#descargaTodo>a>.titulo_cont>span').css("color", "rgb(13,180,190)");
+    $('#descargaTodo>a>.titulo_cont>img').css("opacity", "0.6");
+
   });
 
   $("span#info_circle").hover(function(){
