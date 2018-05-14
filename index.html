@@ -52,6 +52,8 @@
 </div>
 
 <div id='mapaSeries' style='visibility:hidden;'>
+ <div id="notesRemover" style='background-color:transparent; position:fixed; height:100%;width:100%;'></div>
+
  <img class='close_mapaSeries' src='img/close.svg'></img>
  <div class='espere' style='padding:1%;'>
 
@@ -107,7 +109,8 @@
               <div class='titulo_cont mapaSeries_titulo' style='font-size:12px;'><span style='width:100%;' id='InfoTitle'>Mapa de series<br>y descargas</span><br><span id='info_circle' style='width:100%;font-size:1.5vw;color:rgb(13,180,190);'>&#9432;</span></div>
              </div>
 
-             <div style='position:relative;left:10px;top:5px;width:50%;height:100%;display:table-cell;margin-left:20px;' id='descargaTodo'>
+
+             <div style='position:relative;left:0px;top:5px;width:50%;height:100%;display:table-cell;margin-left:20px;display:none;' id='descargaTodo'>
                               <a href='/downloads/en_US/estadisticas/Well_production.zip' style='text-decoration:none;'>
 
               <div class='titulo_cont descargaTodo' style='font-size:12px;'>
@@ -191,27 +194,32 @@
    <div class='cell b fecha'>
     <div class='titulo_cont'>Fecha</div>
 
-    <div id='dateForm' style='width:inherit;height:50px;position:absolute;z-index:-2;background-color:rgb(249,255,255);opacity:0;text-align:center;'>
-     <div class='i_fechas' style='text-align:right;'>
-      <div>
+    <div id='dateForm' style='height:50px;display:none;z-index:-2;background-color:rgb(249,255,255);opacity:0;text-align:center;'>
+<div style='display:table;width:70%;position:relative;table-layout:fixed;'>
+
+     <div class='i_fechas' style='text-align:right;display:table-cell;'>
+      <div style='width:100%;'>
       Inicio:&emsp;
       </div>
-      <div>
+      <div style='width:100%;'>
       Fin:&emsp;
       </div>
 
     </div>
-     <div class='i_fechas' style='width:50%;'>
+     <div class='i_fechas' style='width:50%; display:table-cell;'>
       <div>
-	<input id='datepicker_start' class='datepicker cell'></input>
+        <input id='datepicker_start' class='datepicker cell' style='width:100%;'></input>
       </div>
       <div>
-        <input id='datepicker_end' class='datepicker cell'></input>
+        <input id='datepicker_end' class='datepicker cell' style='width:100%;'></input>
       </div>
      </div>
+  </div>
+
     </div>
 
-    <div style="width:100%; display:table; height:45px">
+
+    <div id='normalDate' style="width:100%; display:table; height:45px">
      <div style='display:table-row;'>
       <div class='cell i_fechas' style='text-align:right;'>
 	<div style='width:100%;display:table;height:100%'>
@@ -229,7 +237,7 @@
       </div>
 
       <div class='cell i_fechas' style='position:relative;'>
-	<div id='HP' style='width:46%;height:calc(100% + 6px);top:-3px;position:absolute;z-index:1;background-color:rgb(249,255,255);opacity:1;border-radius:0px;'>
+	<div id='HP' style='width:47%;height:calc(100% + 6px);top:-3px;position:absolute;z-index:1;background-color:rgb(249,255,255);opacity:1;border-radius:0px;'>
         </div>
 	  <form>
 	    <select class='_month' id='start_month' style="width:45%;"></select>
@@ -245,7 +253,7 @@
 
   <div class='cell d consulta'>
    <div>
-    <button id='consultar' class='consulta_normal'>Consultar</button>
+    <button id='consultar' class='consulta_normal' style='z-index:52;'>Consultar</button>
    </div>
   </div>
 

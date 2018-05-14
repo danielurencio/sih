@@ -75,57 +75,61 @@ function footNoteDisplay() {
                 var isON = $('#notesHelp').attr('class') == 'on' ? true : false;
 
                 if(isON) {
-                    d3.selectAll('#notasTemporal').remove();
+                    d3.selectAll('.notasTemporal').remove();
                     $(this).html('Notas >');
                     $(this).attr('class','off')
                 } else {
 
-                    d3.select('div#grapher').append('div')
-                        .attr('id','notasTemporal')
-                        .style('position','fixed')
-                        .style('top','50%')
-                        .style('left','25%')
-                        .style('width','50%')
-                        .style('border-radius','3px')
-                        .style('background-color','rgba(13,180,190,0.85)')
-                        .style('color','white')
-                        .style('padding','15px')
-                        .html($('#metodos').html());
+                    var notas = 
+                    '<div id="espere" class="notasTemporal" style="visibility:visible;top:0px;position:fixed;z-index:52;height:100%;background-color:rgba(0,0,0,0.75);">'+
+                     '<div id="notesRemover" style="background-color:transparent; position:fixed; height:100%;width:100%;"></div>' +
+                     '<div class="espere notThis" style="background-color:transparent;width:70%;left:15%;height:auto;top:0px;">'+
+                      '<div class="container notThis" style="background-color:transparent;">'+
+                       '<div class="helper notThis" style="background-color:rgba(13,180,190,0.45);border-radius:5px; padding:25px;">'+
+                        '<div class="content_notas notThis" style="color:white;">'+
+                         '<p>Hola</p>'+
+                        '</div>'+
+                       '</div>'+
+                      '</div>'+
+                     '</div>'+
+                //'</div>'+
+                    '</div>';
 
-                    d3.select('#notasTemporal').append('img')
+                    $('body').prepend(notas);
+                    //$('#notesRemover').css('height','100%');
+
+                    var metodos_ = $($('#metodos').html())
+                    metodos_.css('padding','0px');
+
+                    d3.select('.notasTemporal div.content_notas')
+                        .html(metodos_.html());
+
+                    var notasTempOffset = $('.notasTemporal>.espere>.container')[0].getBoundingClientRect().height / 2;
+                    $('.notasTemporal>.espere').css('top','calc(50% - '+ notasTempOffset + 'px)');
+
+                    d3.select('.notasTemporal>.espere').append('img')
                         .attr('id','closeNotes')
                         .attr('src','/img/close_.svg')
                         .style('position','absolute')
                         .style('top','-12.5px')
                         .style('left','calc(100% - 12.5px)')
 
-                        $('img#closeNotes')
+                        $('img#closeNotes, .notasTemporal>#notesRemover')
                         .on('click',function() { 
                             $('#notesHelp').html('Notas >');
                             $('#notesHelp').attr('class','off');
-                            $('#notasTemporal').remove();
+                            $('.notasTemporal').remove();
                         });
 
-                    var notasBtnHeight = +$('#notesHelp')[0].getBoundingClientRect().y//.css("height").split('px')[0];
-                    var notasTemp = +$('#notasTemporal').css('height').split('px')[0] / 2//[0].getBoundingClientRect();
-                    //var notasY = notasTemp.height// || notasTemp.top;
-                    $('#notasTemporal').css('top','calc(50% - ' + (notasTemp) + 'px)');
                     $(this).html('Notas <');
                     $(this).attr('class','on');
                 }
-
-                if(document.querySelector('div#notasTemporal')) {
-                        var notesFrameTop = document.querySelector('div#notasTemporal')
-                                         .getBoundingClientRect().top;
-
-                        if(notesFrameTop < 0) {
-                            $('#notasTemporal').css('width','60%')
-                                               .css('left','20%')
-                                               .css('top',notesFrameTop*1.5 + 'px');
-                        }
-                }
-
             });
+        }
+
+        if(document.querySelector('div.notasTemporal')) {
+            var notasTempOffset = $('.notasTemporal>.espere>.container')[0].getBoundingClientRect().height / 2;
+            $('.notasTemporal>.espere').css('top','calc(50% - '+ notasTempOffset + 'px)');
         }
     }
 
@@ -260,6 +264,12 @@ window.onresize = function() {
             .text('Remover filtro');
   }
 /* ---- Esto hace que el botón de remover filtro no se traslape con el filtro-buscador. ---- */
+  if(window.innerWidth <= 640) {
+    $('button#consultar').text('')
+  } else {
+    $('button#consultar').text('Consultar')
+
+  }
 }
 
 
@@ -486,10 +496,16 @@ function ajaxFunction(data, Cubos, filtrarSeries, special_params,
     // Esconder mensaje de espera.
     if (!noHayTabla && !special_params) {
         /*if(!esperaMapaSeries)*/ $("div#espere").css("visibility", "hidden");
+        //console.log('errorDeFlechas')
+    } else {
+        console.log('!');
     }
 
     if(!noHayTabla && special_params && key_ == 'Sin resultados') {
         $('div#espere').css("visibility","hidden");
+        //console.log('errorDeFlechas')
+    } else {
+        //console.log('!');
     }
     // Esconder mensaje de espera.
 
@@ -999,6 +1015,7 @@ function grapher(info) {
 
     var grapher_element =
         "<div id='grapher'>" +
+        '<div id="notesRemover" style="background-color:transparent; position:fixed; height:100%;width:100%;"></div>' +
         "<button class='datos_grapher' tag='off'>" +
         "Datos <span id='flecha'>></span>" +
         "</button>" +
@@ -1028,7 +1045,7 @@ function grapher(info) {
     $('body').css("overflow", "hidden");
     $('body').prepend(grapher_element);
 
-    $('.close_chart').on("click", function() {
+    $('.close_chart, div#grapher>#notesRemover').on("click", function() {
         $("body").css("overflow", "auto");
         $("#grapher").remove();
     });
@@ -1766,13 +1783,22 @@ function periodForm(periodicidad) {
 	  HP.css("z-index", "1");
 	  dateForm.css("z-index","-2");
 	  dateForm.css("opacity","0");
+      dateForm.css('display','none');
+      $('#normalDate').css('display','table');
+
 	} else if(_selected_period_ == 'monthly' ) {
 	  HP.css("z-index", "-1");
 	  dateForm.css("z-index","-2");
 	  dateForm.css("opacity","0");
+      dateForm.css('display','none');
+      $('#normalDate').css('display','table');
+
+
 	} else {
 	  dateForm.css("z-index","51");
 	  dateForm.css("opacity","1");
+      dateForm.css('display','table');
+      $('#normalDate').css('display','none');
 	}
 /*------ ^^ Habilitar modo de seleccionar periodicidad según lo que esté seleccionado ^^ ---------*/
 };
@@ -1817,7 +1843,7 @@ function mapaDeSeries(TEMAS) {
   });
 
 
-  $('.close_mapaSeries').on("click", function() {
+  $('.close_mapaSeries, #mapaSeries>#notesRemover').on("click", function() {
     $("#mapaSeries").css("visibility","hidden");
   });
 

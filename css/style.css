@@ -75,16 +75,16 @@ div#tema_options>div:nth-child(2) {
   font-family:'Open Sans';
   font-size:14px;
   font-weight:600;
-  top:27px;
+  /*top:27px;*/
   position:relative;
 }
 
 .a, .b, .c, .d { height:100%; }
 
-.a { width:45%; padding-left:20px; display:table-cell;table-layout:fixed; }
+.a { width:50%; padding-left:20px; display:table-cell;table-layout:fixed; }
 .b { width:25%; }
 .c { width:15%; }
-.d { width:15%; }
+.d { width:10%; }
 
 .filtros, .filtros_ {
   width:100px;
@@ -694,21 +694,21 @@ text.highcharts-credits>.highcharts-anchor {
 
 
 @-moz-keyframes myfirst {/* Firefox */
-  0%   { background:rgba(13,180,190,1); }
-  50%  { background:rgba(120,225,225,1); }
-  100%   { background:rgba(13,180,190,1); }
+  0%   { background-color:rgba(13,180,190,1); }
+  50%  { background-color:rgba(120,225,225,1); }
+  100%   { background-color:rgba(13,180,190,1); }
 }
  
 @-webkit-keyframes myfirst {/* Chrome */
-  0%   { background:rgba(13,180,190,1); }
-  50%  { background:rgba(120,225,225,1); }
-  100%   { background:rgba(13,180,190,1); }
+  0%   { background-color:rgba(13,180,190,1); }
+  50%  { background-color:rgba(120,225,225,1); }
+  100%   { background-color:rgba(13,180,190,1); }
 }
 
 @keyframes myfirst { /* IE */
-  0%   { background:rgba(13,180,190,1); }
-  50%  { background:rgba(120,225,225,1); }
-  100%   { background:rgba(13,180,190,1); }
+  0%   { background-color:rgba(13,180,190,1); }
+  50%  { background-color:rgba(120,225,225,1); }
+  100%   { background-color:rgba(13,180,190,1); }
 }
 
 .consulta_normal {
@@ -725,6 +725,7 @@ button#consultar, div#descargaTodo>button {
   color: white;
   border-radius: 3px;
   font-weight: 600;
+  top:40px;
 }
 
 button#descarga {
@@ -766,6 +767,7 @@ input.datepicker {
   border-radius:5px;
   border:1px solid gray;
   text-align:center;
+  width:30%;
 }
 
 .liMapa:hover {
@@ -799,7 +801,7 @@ div#mainTitle{
       /*font-size:10px;*/
       position:relative;
       height:30px;
-      top:27px;
+      /*top:27px;*/
       font-family:'Open Sans';
 }
 
@@ -874,7 +876,7 @@ li.mapaSeriesTemas {
   }
 
   .seccion>div>.titulo_cont, .tema>div>.titulo_cont {
-    width:30%;
+    width:20%;
     text-align:right;
   }
 
@@ -907,4 +909,25 @@ img#closeNotes {
 
 .descargaTodo>img{
   opacity:0.6;
+}
+
+div.dateForm {
+  display:none;
+  width:inherit;
+}
+
+div.dateForm>div.i_fechas {
+  display:table-cell;
+}
+
+div.dateForm input {
+  width:100%;
+}
+
+div#notasGrapher {
+  width:100%;
+  height:100%;
+  position:fixed;
+  background-color:rgba(0,0,0,0.65);
+  z-index:400;
 }

@@ -210,21 +210,21 @@
                       document.querySelector("input#filtroSerie").value = "";
 
                       var sel_ = $("select.filtros_").find(":selected").attr("tag");
-		      var temas_seccion = TEMAS.filter(function(d) {
-			return d.seccion == sel_;
-		      });
+		      		  var temas_seccion = TEMAS.filter(function(d) {
+							return d.seccion == sel_;
+		      		  });
 
 		      d3.select("select.filtros").html("");
 
 		      d3.select("select.filtros").selectAll("option")
-			.data(temas_seccion).enter()
-			.append("option")
-			.attr("tag",function(d) {
-			    return d.json_arg;
-			})
-			.html(function(d) {
-			    return d.tema;
-			});
+				.data(temas_seccion).enter()
+				.append("option")
+				.attr("tag",function(d) {
+			    	return d.json_arg;
+				})
+				.html(function(d) {
+			    	return d.tema;
+				});
 
 
 		    if(!esperaMapaSeries) {
@@ -248,51 +248,51 @@
 		});
 // ===================================================================================
 
-                $("select.filtros").change(function() {//<--CAMBIO DE TEMA..
-		      $("input#filtroSerie").prop("disabled",false);
-                      document.querySelector("input#filtroSerie").value = "";
+            $("select.filtros").change(function() {//<--CAMBIO DE TEMA..
+		        $("input#filtroSerie").prop("disabled",false);
+                document.querySelector("input#filtroSerie").value = "";
 
 /////////////////////////////////////////////////////////////////////////////
 /*Si el usuario quiere cambiar de tema, la lámina de espera se tiene que resetear*/
 /////////////////////////////////////////////////////////////////////////////
-			d3.select("#loading").style("height","60px");
+				d3.select("#loading").style("height","60px");
 
-			d3.select("div.espere")
-			.style("width","30%")
-			.style("height","30%");
-
-
-			d3.select("div.espere")
-			.style("top","35%")
-			.style("left","35%");
+				d3.select("div.espere")
+					.style("width","30%")
+					.style("height","30%");
 
 
-			d3.select("div.content")
-			 .style("width","200px")
-			 .style("margin","0 auto")
-			 .style("padding-bottom","0%")
-			 .style("font-size","15px");
+				d3.select("div.espere")
+					.style("top","35%")
+					.style("left","35%");
 
-			d3.select("div.content>p")
-			 .style("color","black")
 
-			d3.select("div.content>p")
-			  .html("Consultando información")
-			  .style("color","black")
+				d3.select("div.content")
+			 		.style("width","200px")
+			 		.style("margin","0 auto")
+			 		.style("padding-bottom","0%")
+			 		.style("font-size","15px");
 
-			$("div#descargaBotonesSiNo").remove();
-			$("div#divDefense").remove()
+				d3.select("div.content>p")
+			 		.style("color","black")
+
+				d3.select("div.content>p")
+			  		.html("Consultando información")
+			  		.style("color","black")
+
+				$("div#descargaBotonesSiNo").remove();
+				$("div#divDefense").remove()
 		        $("div#optionsDefense").remove()
 //////////////////////////////////////////////////////////////////////////////////
 /*Si el usuario quiere cambiar de tema, la lámina de espera se tiene que resetear*/
 //////////////////////////////////////////////////////////////////////////////////
 
 /*---Deshabilitar temporalmente el botón de Consultar para no repetir AJAX---*/
-		   $("div.d>div").append("<div style='width:90px; height:33px; background-color:rgba(0,0,0,0);" +
+		   		$("div.d>div").append("<div style='width:90px; height:33px; background-color:rgba(0,0,0,0);" +
 					"position:relative;bottom:5px;border-radius:3px;' id='divDefense'></div>");
 
-		  $("div#tema_options").append("<div style='width:" + $('div#tema_options').css('width') +
-				";height:22px;background-color:transparent;position:relative;bottom:22px;' id='optionsDefense'></div>");
+		  		$("div#tema_options").append("<div style='width:" + $('div#tema_options').css('width') +
+					";height:22px;background-color:transparent;position:relative;bottom:22px;' id='optionsDefense'></div>");
 /*---Deshabilitar temporalmente el botón de Consultar para no repetir AJAX---*/
 
                     $("div#quitarFiltro").css("display", "none");
@@ -316,8 +316,8 @@
 
 		    var periodicidad_ = [];
 		    for(var k in _periodicidad) {
-			var pair = [k,_periodicidad[k]];
-			periodicidad_.push(pair);
+				var pair = [k,_periodicidad[k]];
+				periodicidad_.push(pair);
 		    }
 
 
@@ -332,18 +332,23 @@
 		    periodForm(_periodicidad);
 /*------ ^^ Habilitar modo de seleccionar periodicidad según lo que esté seleccionado ^^ ---------*/
 
-		    var title = filtroXcambio_[0].tema;;
+		    //var title = filtroXcambio_[0].tema;;
 
                     $("div#mainTitle").html(title);
 
-                    var title = TEMAS.filter(function(d) {
-                        return d.json_arg == sel_;
-                    })[0].titulo.toUpperCase();
+                    if(filtroXcambio_[0].downloadable) {
+                    	$('div#descargaTodo').css('display','table-cell');
+                    	$('div#descargaTodo>a').attr('href',TEMAfiltrado[0].downloadable);
+                    } else {
+                    	$('div#descargaTodo').css('display','none');
+                    }
+
+                    var title = filtroXcambio_[0].titulo.toUpperCase();
 
                     $("div#mainTitle").html(title);
 
                     var sizE = $("div#mainTitle")[0]
-				.getBoundingClientRect().right / 2;
+									.getBoundingClientRect().right / 2;
 
                     var LEFT = (window.innerWidth / 2) - (sizE / 2);
 
@@ -379,18 +384,18 @@
 
 
                     var start_year = document.getElementById("start_year")
-			.children;
+											.children;
                     start_year = Array.prototype.slice.call(start_year)
-		      .map(function(d) {
-                        return d.textContent;
-                    });
+		     								 .map(function(d) {
+                        						return d.textContent;
+                    						});
 
                     var start_month = document.getElementById("start_month")
-			.children;
+											.children;
                     start_month = Array.prototype.slice.call(start_month)
-		     .map(function(d) {
-                        return d.textContent;
-                    });
+		     									.map(function(d) {
+                        							return d.textContent;
+                    							});
 
                     function addMonths(date, months) {
                         date.setMonth(date.getMonth() + months);
@@ -453,17 +458,18 @@
                         datatype: "json",
                         data: params,
                         success: function(data) {
-			  var ifEmpty = checkIfEmpty(data);
-/*=================Checar si las tablas están vacías========================*/
-			  if(!ifEmpty) {
-                            ajaxFunction(data, Cubos, filtrarSeries, null, null); //| ¡"AjaxFunction" & "FiltrarSeries"
-                            leyendaNotas(TEMAS, params);
 
-			  } else {
-			    data_buscar = null;
-			    ajaxFunction(data,Cubos,filtrarSeries,null,data_buscar); //| ¡"AjaxFunction" & "FiltrarSeries"
-			    leyendaNotas(TEMAS,params)
-			  }
+			  				var ifEmpty = checkIfEmpty(data);
+/*=================Checar si las tablas están vacías========================*/
+			 				 if(!ifEmpty) {
+                            	ajaxFunction(data, Cubos, filtrarSeries, null, null); //| ¡"AjaxFunction" & "FiltrarSeries"
+                            	leyendaNotas(TEMAS, params);
+
+			  				} else {
+			    				data_buscar = null;
+			    				ajaxFunction(data,Cubos,filtrarSeries,null,data_buscar); //| ¡"AjaxFunction" & "FiltrarSeries"
+			    				leyendaNotas(TEMAS,params)
+			  				}
 /*=================Checar si las tablas están vacías========================*/
                         }
                     });
@@ -546,10 +552,27 @@
                     datatype: "json",
                     data: params,
                     success: function(data) {
-			var ifEmpty = checkIfEmpty(data);
+
+						var ifEmpty = checkIfEmpty(data);
                         ajaxFunction(data, Cubos, filtrarSeries, null, null);
                         leyendaNotas(TEMAS, params);
-			cambio_ = false;
+						cambio_ = false;
+
+                    	/*---- CHECAR SI EXISTE UN ARCHIVO DESCARGABLE PARA ESTE TEMA ----*/
+						var sel_ = $("select.filtros").find(":selected").attr("tag");
+
+                    	var filtroXcambio_ = TEMAS.filter(function(d) {
+                        	return d.json_arg == sel_;
+                    	});
+
+                    	if(filtroXcambio_[0].downloadable) {
+                    		$('div#descargaTodo').css('display','table-cell');
+                    		$('div#descargaTodo>a').attr('href',TEMAfiltrado[0].downloadable);
+                    	} else {
+                    		$('div#descargaTodo').css('display','none');
+                    	}
+                    	/*---- CHECAR SI EXISTE UN ARCHIVO DESCARGABLE PARA ESTE TEMA ----*/
+
                     }
 
                 });

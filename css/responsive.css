@@ -55,12 +55,16 @@
     }
 
     .consulta>div>button#consultar {
-      width:70px;
+      width:35px;
       font-size:12px;
+      background: rgb(13,180,190) url(../img/glass_.svg) no-repeat 10px;
     }
 
     .consulta_anim {
-    	min-width:70px;
+    	min-width:35px;
+      max-width:35px;
+      background: rgb(13,180,190) url(../img/glass_.svg) no-repeat 10px;
+      padding:0px;
     }
 
     div#tema_options>div:nth-child(2) {
@@ -96,7 +100,7 @@
     	position:relative;
     	width:10%;
     	height:100%;
-    	left:-10px;
+    	left:0px;
     }
 
     div.fecha div.i_fechas>div {
@@ -127,11 +131,11 @@
   		/*font-size:10px;*/
   		position:relative;
   		height:30px;
-  		top:27px;
+  		/*top:27px;*/
 	}
 }
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:460px) {
 	div.mapa_series {
 		display:none;
 	}
@@ -144,14 +148,12 @@
     	margin-left:10px;
     }
 
+/*
     .consulta>div>button#consultar {
       width:60px;
       font-size:10px;
     }
-
-    .consulta_anim {
-      min-width:60px;
-    }
+*/
 
     #tema_options select {
     	font-size:10px;
@@ -173,14 +175,14 @@
     div.a {
     	table-layout:fixed;
     	padding-left:0px;
-    	width:22%;
+    	width:30%;
     	left:5px;
     	height:100%;
     }
 
     div.b {
     	position:relative;
-    	width:30%;
+    	width:35%;
     	padding-left:10px;
     	height:100%;
     }
