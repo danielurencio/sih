@@ -292,7 +292,7 @@ window.onresize = function() {
             .text('Remover filtro');
   }
 /* ---- Esto hace que el botón de remover filtro no se traslape con el filtro-buscador. ---- */
-  if(window.innerWidth <= 640) {
+  if(window.innerWidth <= 1000) {
     $('button#consultar').text('')
   } else {
     $('button#consultar').text('Consultar')

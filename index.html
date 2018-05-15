@@ -5,7 +5,7 @@
   <script>
     
     var width_ = window.innerWidth;
-    if(width_ <= 1024) {
+    if(width_ <= 1150) {
       var currentURL = new URL(window.location.href).searchParams.get('redirected');
       if(!currentURL) window.top.location.href = '/SIH?redirected=1';
     }
@@ -230,12 +230,12 @@
 	<div style='width:100%;display:table;height:100%'>
 	 <div style='display:table-row;height:100%;'>
           <div class='cell i_fechas'>
-	   <div>Inicio:</div>
-	   <div>Fin:</div>
+	   <div>Inicio:&nbsp;</div>
+	   <div>Fin:&nbsp;</div>
 	  </div>
           <div class='cell i_fechas'>
-	   <form><select id='start_year' style="width:90%;"></select></form>
-	   <form><select id='end_year' style="width:90%;"></select></form>
+	   <form><select id='start_year' style="width:100%;"></select></form>
+	   <form><select id='end_year' style="width:100%;"></select></form>
 	  </div>
 	 </div>
 	</div>
