@@ -1215,7 +1215,8 @@ function grapher(info) {
                     fontWeight: 700
                 },
                 text: info.tema
-            }
+            },
+            min:0
         },
         plotOptions: {
             series: {
