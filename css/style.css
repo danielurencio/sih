@@ -473,7 +473,7 @@ button.filtros {
 }
 
 
-div#espere>div>div.espere {
+div#espere>div>div.espere, .notasTemporal>.espere {
  background:white;
  width:30%;
  height:30%;
