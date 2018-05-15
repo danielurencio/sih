@@ -1877,7 +1877,7 @@ function mapaDeSeries(TEMAS) {
     resizeMapaDeSeries();
   });
 
-  $('.mapaSeries_titulo').click(function() {
+  $('.mapaSeries_titulo>#InfoTitle').click(function() {
     $("#mapaSeries").css("visibility","visible");
     resizeMapaDeSeries();
   });

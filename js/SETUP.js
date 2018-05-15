@@ -1,4 +1,11 @@
 function SETUP() {
+  if(window.innerWidth <= 1000) {
+    $('button#consultar').text('')
+  } else {
+    $('button#consultar').text('Consultar')
+
+  }
+
 
   if(window.innerWidth < 824) {
     $('div#quitarFiltro')

@@ -786,7 +786,7 @@ input.datepicker {
   text-decoration:underline;
 }
 
-.mapaSeries_titulo:hover {
+.mapaSeries_titulo>*:hover {
   cursor:pointer;
 }
 
