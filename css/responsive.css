@@ -222,7 +222,9 @@
 }
 
 @media screen and (max-width:823px) {
-
+  div#filtro_buscador_papa {
+    height:82px;
+  }
 
 	div#tabla {
 		padding-top:165px;
@@ -395,6 +397,11 @@
 
 
 @media screen and (min-width:535px) and (max-width:824px) {
+
+  .datepicker {
+    font-size:11px;
+  }
+
   #filtro_buscador {
   	left:10%;
   	width:100%;
@@ -413,6 +420,28 @@
   }
 
 }
+
+
+
+@media screen and (min-width:490px) and (max-width:535px) {
+  .datepicker {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width:365px) and (max-width:490px) {
+  .datepicker {
+    font-size:8px;
+  }
+}
+
+
+@media screen and (max-width:365px) {
+  .datepicker {
+    font-size:6.5px;
+  }
+}
+
 
 @media screen and (max-width:900px) {
   #descargaTodo {

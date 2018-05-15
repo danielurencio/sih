@@ -39,6 +39,9 @@
  <body>
 
 <div id='espere' style="visibility:visible;">
+  <div style='background-color:transparent;height:95px;width:100%;position:fixed;cursor:not-allowed;' id='esperaDefensa'></div>
+
+<div style='top:95px;width:100%;height:calc(100% - 95px);position:fixed;background-color:rgba(0,0,0,0.5);'>
  <div class='espere'>
   <div class='container'>
    <div class='helper'>
@@ -49,10 +52,12 @@
    </div>
   </div>
  </div>
+
+</div>
 </div>
 
 <div id='mapaSeries' style='visibility:hidden;'>
- <div id="notesRemover" style='background-color:transparent; position:fixed; height:100%;width:100%;'></div>
+ <div id="notesRemover" style='background-color:transparent; position:relative; height:100%;width:100%;'></div>
 
  <img class='close_mapaSeries' src='img/close.svg'></img>
  <div class='espere' style='padding:1%;'>

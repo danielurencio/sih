@@ -438,7 +438,15 @@ button.filtros {
   z-index:51;
 }
 
-#espere, #mapaSeries { height:calc(100% - 95px); top:95px; }
+ #mapaSeries { height:calc(100% - 95px); top:95px; }
+
+#espere {
+  background-color:transparent;
+}
+
+#espereDefensa {
+  cursor:not-allowed;
+}
 
 #grapher>div#chart {
  background:white;
@@ -465,7 +473,7 @@ button.filtros {
 }
 
 
-div#espere>div.espere {
+div#espere>div>div.espere {
  background:white;
  width:30%;
  height:30%;
@@ -768,6 +776,7 @@ input.datepicker {
   border:1px solid gray;
   text-align:center;
   width:30%;
+  height:15px;
 }
 
 .liMapa:hover {
@@ -930,4 +939,8 @@ div#notasGrapher {
   position:fixed;
   background-color:rgba(0,0,0,0.65);
   z-index:400;
+}
+
+div#filtro_buscador_papa {
+  height:95px;
 }

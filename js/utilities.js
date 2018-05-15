@@ -146,7 +146,7 @@ function footNoteDisplay() {
                                   .top;
 
         var condToPullUp = notesFrameBottom > notesBtnTop;
-
+/*
         if(condToPullUp) {
             var dif_ = (notesFrameBottom - notesBtnTop) + 10;
             $('div#notasTemporal').css('top',(notesFrameTop - dif_) + 'px');
@@ -155,14 +155,12 @@ function footNoteDisplay() {
             var notasTemp = +$('#notasTemporal').css('height').split('px')[0] / 2;
             $('#notasTemporal').css('top','calc(50% - ' + (notasTemp) + 'px)');
         }
-
+*/
     }
 }
 
 
 function showHideGraphFootnotes() {
-
-    $('div#grapher').on("redraw",function() { console.log('draw'); })
 
     if(document.querySelector('.highcharts-credits')) {
       var credits_ = document.querySelector('.highcharts-credits').getBoundingClientRect();
@@ -178,17 +176,39 @@ function showHideGraphFootnotes() {
       var selChart = $('div#chart').highcharts();
 
       if(cond_x) {
+        
           selChart.options.chart.marginBottom = 60;
           selChart.isDirtyBox = true;
           selChart.redraw();
           $('.highcharts-credits').css('visibility','hidden');
+        
       } else {
-          var marginCred = document.querySelector('div#metodos>div').clientHeight;
-          selChart.options.chart.marginBottom = marginCred;
-          selChart.isDirtyBox = true;
-          selChart.redraw();
-          $('.highcharts-credits').css('visibility','visible');
-          d3.selectAll('#notasTemporal').remove();
+        
+          var xLabel = $('.highcharts-xaxis-labels')[0].getBoundingClientRect().bottom;
+          var credits = $('.highcharts-credits')[0].getBoundingClientRect().top;
+          var marginCred = document.querySelector('div#metodos>div').clientHeight + 15;
+
+
+          if(xLabel > credits) {
+            marginCred += (xLabel - credits);
+          }
+
+            selChart.options.chart.marginBottom = marginCred;
+            selChart.isDirtyBox = true;
+            selChart.redraw();
+            $('.highcharts-credits').css('visibility','visible');
+
+            window.setTimeout(function() {
+                try {           
+                    var selChart = $('div#chart').highcharts();
+                    var xLabel = $('.highcharts-xaxis-labels')[0].getBoundingClientRect().bottom;
+                    var credits = $('.highcharts-credits')[0].getBoundingClientRect().top;
+                    selChart.options.chart.marginBottom += xLabel > credits ? (xLabel - credits) : 0;
+                    selChart.isDirtyBox = true;
+                    selChart.redraw();
+                } catch(err) { return }
+            },1000);
+
       }
 
       footNoteDisplay();
@@ -200,6 +220,14 @@ function showHideGraphFootnotes() {
 
 
 window.onresize = function() {
+    if(document.querySelector('button.datos_grapher')) {
+        var flecha_ = $('span#flecha').text();
+        var textoBtnDatos_grapher = window.innerWidth > 420 ? 'Datos ' : '';
+        var _txt_ = textoBtnDatos_grapher + "<span id='flecha'>"+ flecha_ +"</span>";
+        $('button.datos_grapher').html(_txt_);
+    }
+
+
     var tag_boton = $("button.datos_grapher").attr("tag");
     var new_tag_boton = tag_boton == 'off' ? 'on' : 'off';
 
@@ -498,7 +526,16 @@ function ajaxFunction(data, Cubos, filtrarSeries, special_params,
         /*if(!esperaMapaSeries)*/ $("div#espere").css("visibility", "hidden");
         //console.log('errorDeFlechas')
     } else {
-        console.log('!');
+        //console.log('!');
+        var timer = window.setInterval(function(){
+            var pruebaHide = document.querySelectorAll('.hide').length;
+            if(pruebaHide > 0) {
+                $('div#espere').css('visibility','hidden');
+                //console.log(pruebaHide);
+                window.clearInterval(timer);
+            }
+        },1000)
+
     }
 
     if(!noHayTabla && special_params && key_ == 'Sin resultados') {
@@ -1013,11 +1050,13 @@ function grapher(info) {
     }
     fake_tag = fake_tag.join(" - ");
 
+    var textoBtnDatos_grapher = window.innerWidth > 420 ? 'Datos ' : '';
+
     var grapher_element =
         "<div id='grapher'>" +
         '<div id="notesRemover" style="background-color:transparent; position:fixed; height:100%;width:100%;"></div>' +
         "<button class='datos_grapher' tag='off'>" +
-        "Datos <span id='flecha'>></span>" +
+        textoBtnDatos_grapher + "<span id='flecha'>></span>" +
         "</button>" +
         "<img class='close_chart' src='img/close.svg'></img>" +
 

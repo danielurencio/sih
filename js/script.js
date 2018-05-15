@@ -338,7 +338,7 @@
 
                     if(filtroXcambio_[0].downloadable) {
                     	$('div#descargaTodo').css('display','table-cell');
-                    	$('div#descargaTodo>a').attr('href',TEMAfiltrado[0].downloadable);
+                    	$('div#descargaTodo>a').attr('href',filtroXcambio_[0].downloadable);
                     } else {
                     	$('div#descargaTodo').css('display','none');
                     }
