@@ -109,7 +109,7 @@ function footNoteDisplay() {
 
                     d3.select('.notasTemporal>.espere').append('img')
                         .attr('id','closeNotes')
-                        .attr('src','/img/close_.svg')
+                        .attr('src','img/close_.svg')
                         .style('position','absolute')
                         .style('top','-12.5px')
                         .style('left','calc(100% - 12.5px)')
