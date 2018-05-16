@@ -222,7 +222,7 @@ function showHideGraphFootnotes() {
 window.onresize = function() {
     if(document.querySelector('button.datos_grapher')) {
         var flecha_ = $('span#flecha').text();
-        var textoBtnDatos_grapher = window.innerWidth > 420 ? 'Datos ' : '';
+        var textoBtnDatos_grapher = window.innerWidth > 568 ? 'Datos ' : '';
         var _txt_ = textoBtnDatos_grapher + "<span id='flecha'>"+ flecha_ +"</span>";
         $('button.datos_grapher').html(_txt_);
     }
@@ -260,7 +260,7 @@ window.onresize = function() {
             }
         }
     } catch (err) {
-        console.log(err);
+        //console.log(err);
     }
 /*-------Mostrar y ocultar el scroller-x bajo demanda---------------------*/
   resizeMapaDeSeries();
@@ -1050,7 +1050,7 @@ function grapher(info) {
     }
     fake_tag = fake_tag.join(" - ");
 
-    var textoBtnDatos_grapher = window.innerWidth > 420 ? 'Datos ' : '';
+    var textoBtnDatos_grapher = window.innerWidth > 568 ? 'Datos ' : '';
 
     var grapher_element =
         "<div id='grapher'>" +

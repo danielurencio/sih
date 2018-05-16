@@ -528,3 +528,11 @@
     margin-left:0px;
   }
 }
+
+
+
+@media screen and (max-height:320px) {
+  .highcharts-yaxis>.highcharts-axis-title {
+    font-size:7.2px;
+  }
+}
