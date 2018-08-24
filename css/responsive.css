@@ -58,6 +58,11 @@
       width:35px;
       font-size:12px;
       background: rgb(13,180,190) url(../img/glass_.svg) no-repeat 10px;
+      visibility:visible;
+    }
+
+    .laminaGris {
+      display:none;
     }
 
     .consulta_anim {
@@ -469,6 +474,7 @@
       width:35px;
       font-size:12px;
       background: rgb(13,180,190) url(../img/glass_.svg) no-repeat 10px;
+      /*visibility:visible;*/
       /*left:20px;*/
     }
 

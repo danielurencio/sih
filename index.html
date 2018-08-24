@@ -162,36 +162,91 @@
 
    <div class='cell c periodicidad'>
     <div class='titulo_cont'>Periodicidad</div>
-    <div style="width:100%; display:table; height:40px; position:relative;top:-5px;">
+    <div style='text-align:center;width:auto;'>
+       <div style='display:table;'> 
+            <div style='width:100%;display:table-row;position:relative;'>
+                    <div style='width:50%;height:100%;text-align:right;display:table-cell;'>
+                        <div style='display:table;width:auto;margin-left:auto;margin-right:0;'>
+                                  <div class='cell i_fechas' style='text-align:right;width:auto;'>
+                                      <div id='annually'>A<span>nual</span></div>
+                                      <div id='semesterly'>S<span>emestral</span></div>
+                                      <div id='quarterly'>T<span>rimestral</span></div>
+                                  </div>
+
+                                  <div class='cell i_fechas' style='text-align:right;width:auto;position:relative;'>
+                                   
+                                    <div>
+                                        <input type='radio' name='periodicidad' value='annually' checked></input>
+                                    </div>
+                                    <div>
+                                        <input type='radio' name='periodicidad' value='semesterly'></input>
+                                    </div>
+                                    <div>
+                                        <input type='radio' name='periodicidad' value='quarterly'></input>
+                                    </div>
+                                   
+                                  </div>
+                        </div>
+                    </div>
+
+                    <div style='width:50%;display:table-cell;'>
+                          <div style='display:table;width:auto;'>
+                                  <div class='cell i_fechas' style='text-align:left;width:auto;'>
+                                   
+                                    <div>
+                                        <input type='radio' name='periodicidad' value='monthly'></input>
+                                    </div>
+                                    <div>
+                                        <input type='radio' name='periodicidad' value='daily'></input>
+                                    </div>
+                                   
+                                  </div>
+
+                                  <div class='cell i_fechas' style='width:auto;text-align:left;'>
+                                      <div id='monthly'>M<span>ensual</span></div>
+                                      <div id='daily'>D<span>iario</span></div>
+                                  </div>
+                          </div>
+
+                    </div>
+            </div>
+      </div>
+        
+<!--
      <div style='display:table-row;'>
 
-<!--
+
 <select id='periodicidad' style='width:90%'>
 </select>
--->
 
+                <div class='cell'>
+                    <div class='cell i_fechas' style='text-align:right;'>
+                     <form action>
+                      <div>
+              	          <input type='radio' name='periodicidad' value='annually' checked></input>
+                      </div>
+                      <div>
+              	          <input type='radio' name='periodicidad' value='monthly'></input>
+                      </div>
+                      <div>
+              	          <input type='radio' name='periodicidad' value='daily'></input>
+                      </div>
+                      <div>
+                          <input type='radio' name='periodicidad' value='quarterly'></input>
+                      </div>
+                     </form>
+                    </div>
 
-      <div class='cell i_fechas' style='text-align:right;'>
-       <form action>
-        <div>
-	 <input type='radio' name='periodicidad' value='annually' checked></input>
-        </div>
-        <div>
-	 <input type='radio' name='periodicidad' value='monthly'></input>
-        </div>
-        <div>
-	<input type='radio' name='periodicidad' value='daily'></input>
-        </div>
-       </form>
-      </div>
+                    <div class='cell i_fechas'>
+              	        <div id='annually'>Anual</div>
+              	        <div id='monthly'>Mensual</div>
+              	        <div id='daily'>Diario</div>
+                        <div id='quarterly'>Trimestral</div>
+                    </div>
 
-      <div class='cell i_fechas'>
-	<div id='annually'>Anual</div>
-	<div id='monthly'>Mensual</div>
-	<div id='daily'>Diario</div>
-      </div>
-
+                </div>
      </div>
+-->     
    </div>
   </div>
 

@@ -1,4 +1,5 @@
 function SETUP() {
+  
   if(window.innerWidth <= 1000) {
     $('button#consultar').text('')
   } else {

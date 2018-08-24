@@ -17,6 +17,27 @@ function fechas_() {
     return header_;
 };
 
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+function fechaFormatear(date) {
+    var day = date.getDate();
+    day = String(day).length == 1 ? '0' + day : day;
+
+    var month = date.getMonth() + 1;
+    month = String(month).length == 1 ? '0' + month : month;
+
+    var year = date.getFullYear();
+
+    var _date = year + '-' + month + '-' + day;
+    
+    return _date;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -298,6 +319,13 @@ window.onresize = function() {
     $('button#consultar').text('Consultar')
 
   }
+
+  if(window.innerWidth <= 850) {
+    $('.i_fechas>div>span').css('display','none');
+  } else {
+    $('.i_fechas>div>span').css('display','inline');
+  }
+
 }
 
 
@@ -563,9 +591,9 @@ function formatoData(data) {
                     return d != 'visual';
                 })[0];
 
-                data[i][j][key] =
-                    data[i][j][key]
-                    .replace(/(\d)-(\d)/g, "$1 $2");
+                //data[i][j][key] =
+                //    data[i][j][key]
+                //    .replace(/(\d)-(\d)/g, "$1 $2");
 
                 data[i][j][key] =
                     data[i][j][key]
@@ -1367,13 +1395,18 @@ function headerScroll() {
     })[0].querySelectorAll("th")[1];
 
     if (first_th) {
+        /* Arreglo para encabezados que no son fechas (Textos más largos)*/
+        var sonFechas = fechas_().split(',').every(function(d) { return +d[0]; });
+        var fontSize_ = sonFechas ? '' : 'font-size:8.5px;'
+        /* Arreglo para encabezados que no son fechas (Textos más largos)*/
+
         var cell_Width = first_th.offsetWidth - 1;
 
         var scroll_id_header = fechas_().replace(/-/g, " ").split(",")
             .map(function(d) {
                 return "<th style='width:" + cell_Width +
                     "px;min-width:" + cell_Width + "px;max-width:"
-		   + cell_Width + "px'>" +
+		   + cell_Width + "px;" + fontSize_ + "'>" +
                     d + "</th>";
             });
 
@@ -1819,14 +1852,14 @@ function periodForm(periodicidad) {
 
 	var dateForm = $("div#dateForm");
 
-	if (_selected_period_ == 'annually') {
+	if (_selected_period_ == 'annually' || _selected_period_ == 'quarterly' || _selected_period_ == 'semesterly') {
 	  HP.css("z-index", "1");
 	  dateForm.css("z-index","-2");
 	  dateForm.css("opacity","0");
       dateForm.css('display','none');
       $('#normalDate').css('display','table');
 
-	} else if(_selected_period_ == 'monthly' ) {
+	} else if(_selected_period_ == 'monthly') {
 	  HP.css("z-index", "-1");
 	  dateForm.css("z-index","-2");
 	  dateForm.css("opacity","0");

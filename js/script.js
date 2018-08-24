@@ -1,5 +1,5 @@
-﻿	var ambiente = 'producción';
-	var HOSTNAME = ambiente == 'producción' ? '' : 'http://172.16.24.57';
+﻿	var ambiente = 'producciónn';
+	var HOSTNAME = ambiente == 'producción' ? '' : 'http://172.16.24.57/daniel/ws';
 //var HOSTNAME = 'https://portal.cnih.cnh.gob.mx/api';
 	var asyncAJAX = false;
 	var data_BUSCAR;
@@ -496,20 +496,22 @@
                 for (var j in selectors_) {
                     $(selectors_[j]).change(function() {
 
+                    	var whichParam = {};
                         cambio_ = false;
                         var newParams = parametros();
 
                         for (var k in newParams) {
                             if (newParams[k] != _parametros_[k]) {
+                            	whichParam[k] = _parametros_[k];
                                 cambio_ = true;
                                 break;
                             }
                         }
 
                         if (cambio_) {
-                            boton_consulta
-				.attr("class","consulta_anim")
 
+                            boton_consulta
+								.attr("class","consulta_anim")
                                 .css("background-color", "rgb(13,180,190)")
                                 .css("border", "2px solid white")
                                 .css("border", "none")
@@ -517,9 +519,110 @@
                                 .css("border-radius", "3px")
                                 //.css("font-weight", "800");
 
+							var laminaGris = 
+							"<div id='espere' class='laminaGris' style='visibility:visible;'>" +
+							 "<div style='background-color:transparent;height:95px;width:100%;position:fixed;cursor:not-allowed;' id='esperaDefensa'></div>"+
+								"<div style='top:95px;width:100%;height:calc(100% - 95px);position:fixed;background-color:rgba(0,0,0,0.5);'>"+
+							 		"<div class='espere'>" +
+							  			"<div class='container'>" +
+							   				"<div class='helper'>" +
+							    				"<div class='content' style='width:90%;'>" +
+							     					"<p style='font-weight:300;'>Los parámetros de su consulta han cambiado. <span style='font-weight:700;'><br>¿Desea actualizar la información?</span></p>" +
+							     					"<div style='height:25px;width:100%;display:table;table-layout:fixed;'>" +
+							     						"<div style='width:50%;display:table-cell;height:100%;'>"+
+							     							"<button id='avisoCambio' tag='cambioSi' class='anim_si' style='height:100%;width:80%;background-color:rgb(13,180,190);border:none;color:rgb(255,255,255);border-radius:3px;position:relative;'>Sí</button>" +
+							     						"</div>"+
+							     						"<div style='width:50%;display:table-cell;height:100%;'>"+
+							     							"<button id='avisoCambio' tag='cambioNo' style='height:100%;width:80%;background-color:red;position:relative;'>No</button>"+
+							     						"</div>"+
+							     					"</div>" +
+							    				"</div>" +
+							   				"</div>" +
+							  			"</div>" +
+							 		"</div>" +
+								"</div>" +
+							"</div>";
+
+
+							$('body').prepend(laminaGris);
+
+							var key = Object.keys(whichParam)[0];
+
+							$('button[tag="cambioSi"]').on('click',function() {
+
+								$('.laminaGris').remove();
+
+								if(k == 'period' && newParams[k] == 'daily') {
+
+										var date = new Date();
+										date = new Date(date.getFullYear(),date.getMonth()-1,1);
+										//date = new Date(date.setMonth(date.getMonth() - 1));
+
+
+										var fechaInicial = fechaFormatear(date);
+										var fechaFinal = fechaFormatear(new Date());
+
+										$('#datepicker_start').val(fechaInicial);
+										$('#datepicker_end').val(fechaFinal);
+
+										window.setTimeout(function() {
+											$('button#consultar').click()
+										},0);
+
+								} else {
+
+									$('button#consultar').click();
+
+								}
+
+							});
+
+							$('button[tag="cambioNo"]').on('click',function() {
+								$('.laminaGris').remove();
+
+								if(key == 'period') {
+
+									$('input[value="'+ whichParam[key] +'"]')
+											.prop('checked',true)
+											.trigger('change');
+
+								} else if (key == 'start_month') {
+
+									$('select#start_month')
+											.val(whichParam[key])
+											.trigger('change');
+
+								} else if (key == 'end_month') {
+
+									$('select#end_month')
+											.val(whichParam[key])
+											.trigger('change');
+
+								} else if (key == 'start_month') {
+
+									$('select#start_month')
+											.val(whichParam[key])
+											.trigger('change');
+
+								} else if (key == 'start_year') {
+
+									$('select#start_year')
+											.val(whichParam[key])
+											.trigger('change');
+
+								} else if (key == 'end_year') {
+
+									$('select#end_year')
+											.val(whichParam[key])
+											.trigger();
+
+								}
+
+							});
+
                         } else {
                             boton_consulta
-				.attr("class","consulta_normal")
+								.attr("class","consulta_normal")
                                 .css("font-weight", "600");
 
                         }

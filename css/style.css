@@ -736,7 +736,11 @@ button#consultar, div#descargaTodo>button {
   top:40px;
 }
 
-button#descarga {
+button#consultar {
+  visibility:hidden;
+}
+
+button#descarga, button#avisoCambio {
   border: none;
   color: white;
   border-radius: 2px;
@@ -753,6 +757,11 @@ button#descarga:hover {
   opacity:1;
   cursor:pointer;
   font-weight:800;
+}
+
+button#avisoCambio:hover {
+  opacity:1;
+  cursor:pointer;
 }
 
 div#divDefense:hover, div#optionsDefense:hover {
@@ -812,6 +821,14 @@ div#mainTitle{
       height:30px;
       /*top:27px;*/
       font-family:'Open Sans';
+}
+
+.anim_si {
+  background-color:rgba(13,180,190,1);
+  animation:myfirst 0.8s infinite;
+  -moz-animation:myfirst 0.8s infinite;
+  -webkit-animation:myfirst 0.8s infinite;
+  font-family:'Open Sans';
 }
 
 div#titulo_mapaSeries {

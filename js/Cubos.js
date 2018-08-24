@@ -559,7 +559,7 @@ function Cubos(data, tag) {
                                 d3.selectAll("tr#dist").attr("id", null);
                             }
 
-                            contratosPemexFIX(); // <-- Arregla "coloreados no controlados".
+                            //contratosPemexFIX(); // <-- Arregla "coloreados no controlados".
                             enableGraphs();
                         });
                     }, 10);
