@@ -33,7 +33,7 @@ function fechaFormatear(date) {
     var year = date.getFullYear();
 
     var _date = year + '-' + month + '-' + day;
-    
+
     return _date;
 }
 
@@ -101,7 +101,7 @@ function footNoteDisplay() {
                     $(this).attr('class','off')
                 } else {
 
-                    var notas = 
+                    var notas =
                     '<div id="espere" class="notasTemporal" style="visibility:visible;top:0px;position:fixed;z-index:52;height:100%;background-color:rgba(0,0,0,0.75);">'+
                      '<div id="notesRemover" style="background-color:transparent; position:fixed; height:100%;width:100%;"></div>' +
                      '<div class="espere notThis" style="background-color:transparent;width:70%;left:15%;height:auto;top:0px;">'+
@@ -136,7 +136,7 @@ function footNoteDisplay() {
                         .style('left','calc(100% - 12.5px)')
 
                         $('img#closeNotes, .notasTemporal>#notesRemover')
-                        .on('click',function() { 
+                        .on('click',function() {
                             $('#notesHelp').html('Notas >');
                             $('#notesHelp').attr('class','off');
                             $('.notasTemporal').remove();
@@ -197,14 +197,14 @@ function showHideGraphFootnotes() {
       var selChart = $('div#chart').highcharts();
 
       if(cond_x) {
-        
+
           selChart.options.chart.marginBottom = 60;
           selChart.isDirtyBox = true;
           selChart.redraw();
           $('.highcharts-credits').css('visibility','hidden');
-        
+
       } else {
-        
+
           var xLabel = $('.highcharts-xaxis-labels')[0].getBoundingClientRect().bottom;
           var credits = $('.highcharts-credits')[0].getBoundingClientRect().top;
           var marginCred = document.querySelector('div#metodos>div').clientHeight + 15;
@@ -220,7 +220,7 @@ function showHideGraphFootnotes() {
             $('.highcharts-credits').css('visibility','visible');
 
             window.setTimeout(function() {
-                try {           
+                try {
                     var selChart = $('div#chart').highcharts();
                     var xLabel = $('.highcharts-xaxis-labels')[0].getBoundingClientRect().bottom;
                     var credits = $('.highcharts-credits')[0].getBoundingClientRect().top;
@@ -347,7 +347,7 @@ function descargarSerie() {
     titulo = titulo.replace(/É/g, "E");
     titulo = titulo.replace(/Í/g, "I");
 
-    
+
     titulo = titulo.replace(/Ó/g, "O");
     titulo = titulo.replace(/Ú/g, "U");
 
@@ -531,7 +531,7 @@ function ajaxFunction(data, Cubos, filtrarSeries, special_params,
           consulta.click();
 
 	} catch(err) {
-	  console.log(err);	  
+	  console.log(err);
 	}
 
     } else {
@@ -876,12 +876,12 @@ function descargar_selection(series) {
     chunk = chunk.replace(/Í/g, "I");
     chunk = chunk.replace(/Ó/g, "O");
     chunk = chunk.replace(/Ú/g, "U");
-    chunk = chunk.replace(/<STRONG>/g,'') 
-    chunk = chunk.replace(/<A>/g,'') 
+    chunk = chunk.replace(/<STRONG>/g,'')
+    chunk = chunk.replace(/<A>/g,'')
     chunk = chunk.replace(/<\/STRONG>/g,'')
-    chunk = chunk.replace(/<\/A>/g,'') 
-    chunk = chunk.replace(/>/g,'') 
-    chunk = chunk.replace(/"/g,'') 
+    chunk = chunk.replace(/<\/A>/g,'')
+    chunk = chunk.replace(/>/g,'')
+    chunk = chunk.replace(/"/g,'')
     chunk = chunk.replace(/&LEQ;/g,'<=').replace(/TARGET=_BLANK/g,"");
 
 
@@ -910,10 +910,10 @@ function descargar_selection(series) {
         downloadLink.style.display = "none";
         document.body.appendChild(downloadLink);
         downloadLink.click();
-        var s_a = document.getElementsByTagName("a");
-        for (var i = 0; i < s_a.length; i++) {
-            s_a[i].parentNode.removeChild(s_a[i]);
-        }
+        //var s_a = document.getElementsByTagName("a");
+        //for (var i = 0; i < s_a.length; i++) {
+        //    console.log(s_a[i].parentNode)//.removeChild(s_a[i]);
+        //}
     }
 
 };
@@ -1202,7 +1202,7 @@ function grapher(info) {
         },
         credits: {
             enabled: true,//window.innerWidth > 640 ? true : false,
-            
+
             text: NOTAS,
             position: {
                 align: "left",
@@ -1215,7 +1215,7 @@ function grapher(info) {
                 color: "black"
             },
             href: null
-            
+
         },
         title: {
             text: info.subtema ? info.subtema : info.tema
@@ -1842,7 +1842,7 @@ function periodForm(periodicidad) {
 			d.disabled = true;
 			$("div#" + d.value).css("color","gray");
 		   });
-		   
+
 	}
 
 /*-----------------Activar y desactivar periodicidades según el caso----------------------------------*/
@@ -1925,7 +1925,7 @@ function mapaDeSeries(TEMAS) {
   var reglas = ["i <= 2", "i > 2"];
 
   // Esto ayuda a partir los temas en dos para el índice en el mapa de series.
-  var dataSets = reglas.map(function(regla) { 
+  var dataSets = reglas.map(function(regla) {
     return secciones.map(function(tema,i) {
 	  if(eval(regla)) return tema;
 	}).filter(function(tema) { return tema; });
@@ -1962,7 +1962,7 @@ function mapaDeSeries(TEMAS) {
 	      d3.select(this)
 		.append("ul")
 		  .style("padding-left","0%")
-		
+
 		.selectAll('li').data(temas).enter()
 		.append('div')
 //		.attr("tag",function(d) { return d; })
@@ -2107,7 +2107,7 @@ function RenderWords(obj, lang, temas) {
 	  .append("option")
 	  .attr("tag",function(d) { return d[1]; })
 	  .html(function(d) { return d[0]; });
-	  
+
 
 
 /*------ vv Habilitar modo de seleccionar periodicidad según lo que esté seleccionado vv ---------*/
@@ -2255,7 +2255,7 @@ function nameGasNoil(arr_TD) {
   var row = $(arr_TD).parent();
   while(row.attr("id")) {
    arr_next.push(row);
-   row = row.next(); 
+   row = row.next();
   }
 
   var findings = [arr_prev,arr_next];
@@ -2298,7 +2298,7 @@ function resizeMapaDeSeries() {
 
         	var cond = liMapaBottoms.some(function(d) { return d >= (containerBottom - containerPadding); });
 
-        	if(!cond) { 
+        	if(!cond) {
         	  liMapas.css('font-size','1.3vw');
         	  indices.css('padding-bottom','3vw');
         	  indices.css('font-size','1.8vw');
